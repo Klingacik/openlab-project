@@ -13,5 +13,9 @@ namespace openlab_project.Data
         {
 
         }
+
+        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public virtual DbSet<Guild> Guilds { get; set; }
     }
 }

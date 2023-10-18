@@ -12,7 +12,9 @@ const PROXY_CONFIG = [
       "/Identity",
       "/connect",
       "/ApplyDatabaseMigrations",
-      "/_framework"
+      "/_framework",
+      "/user",
+      "/dashboard"
    ],
     proxyTimeout: 10000,
     target: target,

@@ -7,28 +7,25 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./guild.component.css']
 })
 
-
 export class GuildComponent {
-
   Name: string = "no data";
   Description: string = "no data";
-  GuildMaxMembers: number = 0;
+  Capacity: number = 0;
   MembersCount: number = 0;
-
-  public GuildData: GuildInformation[] = [];
-
+  public GuildData!: GuildInfo;
+  
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<GuildInformation[]>(baseUrl + 'Guild').subscribe(result => {
+    http.get<GuildInfo[]>(baseUrl + 'guild').subscribe(result => {
       this.GuildData = result;
 
     }, error => console.error(error));
   }
 }
 
-interface GuildInformation {
+interface GuildInfo {
   name: string;
   id: number;
   description: string;
-  guildMaxMembers: number;
+  capacity: number;
   membersCount: number;
 }

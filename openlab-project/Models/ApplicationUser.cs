@@ -5,7 +5,7 @@ namespace openlab_project.Models
     public class ApplicationUser : IdentityUser
     {
         public int Xp { get; set; }
-        public GuildInfo? Guild { get; set; }
+        public GuildInfo? GuildInfo { get; set; }
 
     }
 }

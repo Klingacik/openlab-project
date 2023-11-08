@@ -35,9 +35,9 @@ namespace OpenLabProject1.Controllers
 
         private int GetguildMembersCount(int guildId)
         {
-            IQueryable<ApplicationUser> users = _context.Users.Include(applicationUser => applicationUser.Guild).AsNoTracking();
+            IQueryable<ApplicationUser> users = _context.Users.Include(applicationUser => applicationUser.GuildInfo).AsNoTracking();
 
-            return users.Where(u => u.Guild.Id == guildId).Count();
+            return users.Where(u => u.GuildInfo.Id == guildId).Count();
         }
 
     }

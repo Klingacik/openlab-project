@@ -12,7 +12,7 @@ export class GuildComponent {
   Description: string = "no data";
   Capacity: number = 0;
   MembersCount: number = 0;
-  public GuildData!: GuildInfo;
+  public GuildData: GuildInfo[] =[];
   
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<GuildInfo[]>(baseUrl + 'guild').subscribe(result => {

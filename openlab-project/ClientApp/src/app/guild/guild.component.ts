@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,17 +13,17 @@ export class GuildComponent {
   Description: string = "no data";
   Capacity: number = 0;
   MembersCount: number = 0;
-  public GuildData: GuildInfo[] =[];
+  public guildData: GuildDetails[] = [];
   
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<GuildInfo[]>(baseUrl + 'guild').subscribe(result => {
-      this.GuildData = result;
+    http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
+      this.guildData = result;
 
     }, error => console.error(error));
   }
 }
 
-interface GuildInfo {
+export interface GuildDetails {
   name: string;
   id: number;
   description: string;

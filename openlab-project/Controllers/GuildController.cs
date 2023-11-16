@@ -7,6 +7,7 @@ using openlab_project;
 
 namespace OpenLabProject1.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class GuildController : Controller

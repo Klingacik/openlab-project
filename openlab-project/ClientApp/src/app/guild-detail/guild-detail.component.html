@@ -1,8 +1,20 @@
-<div *ngFor="let guild of guilds">
-  <h3>
-    <a [title]="guild.name + ' details'"
-       [routerLink]="['/guild', guild.id]">
-      {{ guild.name }}
-    </a>
-  </h3>
+<p>work</p>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item" *ngFor="let guild of guildData; let i = index">
+    <h2 class="accordion-header" [attr.id]="'heading' + i">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-controls]="'#collapse' + i">
+        <strong>{{ guild.name }}</strong>&nbsp; [{{ guild.membersCount }}/{{ guild.capacity }}]
+      </button>
+    </h2>
+    <div [attr.id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'#heading' + i" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        {{ guild.description }}
+        <a [title]="guild.name + ' details'"
+           [routerLink]="['/guilds', guild.id]">
+          {{ guild.name }}
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

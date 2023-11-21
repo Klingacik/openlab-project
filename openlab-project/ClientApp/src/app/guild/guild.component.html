@@ -10,6 +10,10 @@
     <div [attr.id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'#heading' + i" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         {{ guild.description }}
+        <a [title]="guild.name + ' details'"
+           [routerLink]="['/guilds', guild.id]">
+          {{ guild.name }}
+        </a>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guild',
@@ -15,7 +16,7 @@ export class GuildComponent {
   MembersCount: number = 0;
   public guildData: GuildDetails[] = [];
   
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(http: HttpClient, private router: Router, @Inject('BASE_URL') baseUrl: string) {
     http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
       this.guildData = result;
 

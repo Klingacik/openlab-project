@@ -1,6 +1,6 @@
 ﻿namespace openlab_project.Models
 {
-    public class Guild
+    public class GuildInfo
     {
         public int Id { get; set; }
         public required string Name { get; set; }

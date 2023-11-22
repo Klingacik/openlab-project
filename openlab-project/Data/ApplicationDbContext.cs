@@ -16,5 +16,10 @@ namespace openlab_project.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<GuildInfo> Guild { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -15,12 +15,24 @@ export class GuildComponent {
   Capacity: number = 0;
   MembersCount: number = 0;
   public guildData: GuildDetails[] = [];
+<<<<<<< HEAD
   
   constructor(http: HttpClient, private router: Router, @Inject('BASE_URL') baseUrl: string) {
+=======
+
+  constructor(private http: HttpClient, private router: Router, @Inject('BASE_URL') private baseUrl: string) {
+>>>>>>> JOIN button
     http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
       this.guildData = result;
-
     }, error => console.error(error));
+  }
+
+  joinGuild(guildId: number) {
+    this.http.post(this.baseUrl + 'guild/join', { guildId }).subscribe(result => {
+      console.log('Joined guild successfully', guildId);
+    }, error => {
+      console.error('Error joining guild', error);
+    });
   }
 }
 

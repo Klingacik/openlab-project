@@ -24,9 +24,31 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\guild-join\**" />
+    <Compile Remove="ClientApp\src\app\join-guild\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\guild-join\**" />
+    <Content Remove="ClientApp\src\app\join-guild\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\guild-join\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\join-guild\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\guild-join\**" />
+    <None Remove="ClientApp\src\app\join-guild\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\guild-join\.vs\guild-join\config\applicationhost.config" />
+    <None Remove="ClientApp\src\app\guild-join\.vs\guild-join\FileContentIndex\9ac56a26-2b0e-4ad5-9219-a356a4cbcb77.vsidx" />
+    <None Remove="ClientApp\src\app\guild-join\.vs\guild-join\FileContentIndex\df40e067-c1e2-4cd5-931a-c2c863ba2af8.vsidx" />
+    <None Remove="ClientApp\src\app\guild-join\.vs\guild-join\v17\.wsuo" />
+    <None Remove="ClientApp\src\app\guild-join\.vs\slnx.sqlite" />
+    <None Remove="ClientApp\src\app\guild-join\.vs\tasks.vs.json" />
+    <None Remove="ClientApp\src\app\guild-join\.vs\VSWorkspaceState.json" />
+    <None Remove="ClientApp\src\app\join-guild\join-guild.component.css" />
+    <None Remove="ClientApp\src\app\join-guild\join-guild.component.html" />
+    <None Remove="ClientApp\src\app\join-guild\join-guild.component.spec.ts" />
+    <None Remove="ClientApp\src\app\join-guild\join-guild.component.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

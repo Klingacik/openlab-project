@@ -14,8 +14,13 @@ import { GuildDetails } from '../guild/guild.component';
 
 export class GuildDetailComponent {
 
+<<<<<<< HEAD
     public guildData: GuildDetails[] = [];
     constructor(http: HttpClient, private router: Router, @Inject('BASE_URL') baseUrl: string) {
+=======
+  public guildData: GuildDetails[] = [];
+  constructor(http: HttpClient, private router: Router, @Inject('BASE_URL') baseUrl: string) {
+>>>>>>> JOIN button
     http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
       this.guildData = result;
 

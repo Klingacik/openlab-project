@@ -15,11 +15,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuildComponent } from './guild/guild.component';
 import { GuildDetailComponent } from './guild-detail/guild-detail.component';
-<<<<<<< HEAD
-
-=======
 import { GuildJoinComponent } from './guild-join/guild-join.component';
->>>>>>> JOIN button
 
 @NgModule({
   declarations: [
@@ -29,12 +25,8 @@ import { GuildJoinComponent } from './guild-join/guild-join.component';
     CounterComponent,
     FetchDataComponent,
     GuildComponent,
-<<<<<<< HEAD
-    GuildDetailComponent
-=======
     GuildDetailComponent,
     GuildJoinComponent
->>>>>>> JOIN button
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,13 +39,8 @@ import { GuildJoinComponent } from './guild-join/guild-join.component';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'guilds', component: GuildComponent },
-<<<<<<< HEAD
-      { path: 'guilds/:Id', component: GuildDetailComponent } 
-
-=======
       { path: 'guilds/:Id', component: GuildDetailComponent },
       { path: 'guild/join', component: GuildJoinComponent }
->>>>>>> JOIN button
     ])
   ],
   providers: [

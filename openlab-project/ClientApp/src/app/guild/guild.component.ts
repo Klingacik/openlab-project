@@ -15,13 +15,8 @@ export class GuildComponent {
   Capacity: number = 0;
   MembersCount: number = 0;
   public guildData: GuildDetails[] = [];
-<<<<<<< HEAD
-  
-  constructor(http: HttpClient, private router: Router, @Inject('BASE_URL') baseUrl: string) {
-=======
 
   constructor(private http: HttpClient, private router: Router, @Inject('BASE_URL') private baseUrl: string) {
->>>>>>> JOIN button
     http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
       this.guildData = result;
     }, error => console.error(error));

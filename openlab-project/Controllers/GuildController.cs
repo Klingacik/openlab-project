@@ -67,6 +67,30 @@ namespace OpenLabProject1.Controllers
             }
         }
 
+        [HttpPost("leave")]
+        public IActionResult LeaveGuild([FromBody] LeaveGuildRequest request)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var user = _context.ApplicationUsers.Include(u => u.GuildInfo).FirstOrDefault(u => u.Id == userId);
+
+                if (user == null || user.GuildInfo == null)
+                {
+                    return NotFound(new { message = "User or guild not found." });
+                }
+
+                // Remove the user from the guild
+                user.GuildInfo = null;
+                _context.SaveChanges();
+
+                return Ok(new { message = "Successfully left guild." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error." });
+            }
+        }
         private int GetguildMembersCount(int guildId)
         {
             IQueryable<ApplicationUser> users = _context.Users.Include(applicationUser => applicationUser.GuildInfo).AsNoTracking();
@@ -76,6 +100,11 @@ namespace OpenLabProject1.Controllers
     }
 
     public class JoinGuildRequest
+    {
+        public int GuildId { get; set; }
+    }
+
+    public class LeaveGuildRequest
     {
         public int GuildId { get; set; }
     }

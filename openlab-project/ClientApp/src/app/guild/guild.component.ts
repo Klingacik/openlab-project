@@ -29,6 +29,17 @@ export class GuildComponent {
       console.error('Error joining guild', error);
     });
   }
+
+  leaveGuild(guildId: number) {
+    this.http.post(this.baseUrl + 'guild/leave', { guildId }).subscribe(result => {
+        console.log('Left guild successfully', guildId);
+      },
+      error => {
+        console.error('Error leaving guild', error);
+      }
+    );
+  }
+
 }
 
 export interface GuildDetails {

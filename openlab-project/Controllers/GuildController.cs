@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using openlab_project.Data.Migrations;
 
 namespace OpenLabProject1.Controllers
 {
@@ -91,6 +92,31 @@ namespace OpenLabProject1.Controllers
                 return StatusCode(500, new { message = "Internal server error." });
             }
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<GuildDetails> GetGuildDetails(int id)
+        {
+            var guild = _context.Guild
+                              .Where(g => g.Id == id)
+                              .Select(dbGuild => new GuildDetails
+                              {
+                                  Id = dbGuild.Id,
+                                  Name = dbGuild.Name,
+                                  Description = dbGuild.Description,
+                                  Capacity = dbGuild.Capacity,
+                                  MembersCount = _context.Users
+                                                      .Count(u => u.GuildInfo.Id == dbGuild.Id)
+                              })
+                              .FirstOrDefault();
+
+            if (guild == null)
+            {
+                return NotFound(new { message = "Guild not found." });
+            }
+
+            return guild;
+        }
+
         private int GetguildMembersCount(int guildId)
         {
             IQueryable<ApplicationUser> users = _context.Users.Include(applicationUser => applicationUser.GuildInfo).AsNoTracking();
@@ -118,3 +144,5 @@ namespace OpenLabProject1.Controllers
         public int MembersCount { get; set; }
     }
 }
+
+    

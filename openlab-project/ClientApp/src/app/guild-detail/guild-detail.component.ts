@@ -10,14 +10,18 @@ import { GuildDetails } from '../guild/guild.component';
   styleUrls: ['./guild-detail.component.css']
 })
 
-export class GuildDetailComponent {
+export class GuildDetailComponent implements OnInit {
+  public guildData: GuildDetails;
 
-  public guildData: GuildDetails[] = [];
-  constructor(http: HttpClient, private router: Router, @Inject('BASE_URL') baseUrl: string) {
-    http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, @Inject('BASE_URL') private baseUrl: string) { }
+
+  ngOnInit(): void {
+    // Retrieve the guild ID from the route parameters
+    const guildId = this.route.snapshot.paramMap.get('id');
+
+    // Fetch guild details based on the guild ID
+    this.http.get<GuildDetails>(`${this.baseUrl}guild/${guildId}`).subscribe(result => {
       this.guildData = result;
-
     }, error => console.error(error));
   }
-
 }

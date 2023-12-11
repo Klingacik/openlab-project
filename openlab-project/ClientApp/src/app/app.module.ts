@@ -39,7 +39,7 @@ import { GuildJoinComponent } from './guild-join/guild-join.component';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthorizeGuard] },
       { path: 'guilds', component: GuildComponent },
-      { path: 'guilds/:Id', component: GuildDetailComponent },
+      { path: 'guilds/:id', component: GuildDetailComponent },
       { path: 'guild/join', component: GuildJoinComponent }
     ])
   ],

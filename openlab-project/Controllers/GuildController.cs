@@ -60,7 +60,14 @@ namespace OpenLabProject1.Controllers
                 user.GuildInfo = guild; 
                 _context.SaveChanges();
 
-                return Ok(new { message = "Successfully joined guild." });
+                return Ok(new GuildDetails
+                {
+                    Id = guild.Id,
+                    Name = guild.Name,
+                    Description = guild.Description,
+                    Capacity = guild.Capacity,
+                    MembersCount = GetguildMembersCount(guild.Id)
+                });
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -17,21 +17,18 @@ export class GuildComponent {
   public guildData: GuildDetails[] = [];
 
   constructor(private http: HttpClient, private router: Router, @Inject('BASE_URL') private baseUrl: string) {
-    http.get<GuildDetails[]>(baseUrl + 'guild').subscribe(result => {
-      this.guildData = result;
-    }, error => console.error(error));
+    http.get<GuildDetails>(baseUrl + 'guild').subscribe(guild => this.holakys.set(guild));
   }
 
+  holakys = signal<GuildDetails>(undefined);
+
   joinGuild(guildId: number) {
-    this.http.post(this.baseUrl + 'guild/join', { guildId }).subscribe(result => {
-      console.log('Joined guild successfully', guildId);
-    }, error => {
-      console.error('Error joining guild', error);
-    });
+    this.http.post<GuildDetails>(this.baseUrl + 'guild/join', { guildId }).subscribe(guildDetailJoin => this.holakys.set(guildDetailJoin));
+    
   }
 
   leaveGuild(guildId: number) {
-    this.http.post(this.baseUrl + 'guild/leave', { guildId }).subscribe(result => {
+    this.http.post<GuildDetails>(this.baseUrl + 'guild/leave', { guildId }).subscribe(result => {
         console.log('Left guild successfully', guildId);
       },
       error => {
